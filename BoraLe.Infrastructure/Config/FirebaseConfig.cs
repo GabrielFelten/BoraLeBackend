@@ -13,10 +13,10 @@ namespace BoraLe.Infrastructure.Config
             string projectId = configuration["firebaseConfig:projectId"]
                                ?? throw new Exception("Firebase ProjectId não configurado");
 
-            string credentialsPath = configuration["firebaseConfig:credentialsPath"]
-                                     ?? throw new Exception("Caminho do JSON de credenciais não configurado");
+            string credentialsJson = Environment.GetEnvironmentVariable("FIREBASE_CREDENTIALS")
+                     ?? throw new Exception("Variável FIREBASE_CREDENTIALS não configurada");
+            var credential = GoogleCredential.FromJson(credentialsJson);
 
-            var credential = GoogleCredential.FromFile(credentialsPath);
             _firestoreDb = new FirestoreDbBuilder
             {
                 ProjectId = projectId,
