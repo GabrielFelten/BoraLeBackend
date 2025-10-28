@@ -35,12 +35,34 @@ namespace BoraLe.Infrastructure.Repositories
             {
                 Name = register.Name,
                 Email = register.Email,
+                State = register.State,
                 City = register.City,
                 Phone = register.Phone,
                 Pass = register.Pass
             });
 
             return userRef.Id.ToString();
+        }
+
+        public async Task<UserProfile> GetUser(string userId)
+        {
+            var docRef = _db.Collection(CollectionName).Document(userId);
+
+            var snapshot = await docRef.GetSnapshotAsync();
+
+            if (!snapshot.Exists)
+                return null;
+
+            var user = snapshot.ConvertTo<User>();
+
+            return new UserProfile
+            {
+                Name = user.Name,
+                Email = user.Email,
+                Phone = user.Phone,
+                State = user.State,
+                City = user.City
+            };
         }
     }
 }

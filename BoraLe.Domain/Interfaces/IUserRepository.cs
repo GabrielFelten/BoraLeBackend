@@ -6,6 +6,7 @@ namespace BoraLe.Domain.Interfaces
     {
         Task<IEnumerable<User>> GetAllAsync();
         Task<UserLogin> GetByFieldAsync(string field, string value);
-        Task<string> AddAsync(Register register);        
+        Task<string> AddAsync(Register register);
+        Task<UserProfile> GetUser(string userId);
     }
 }

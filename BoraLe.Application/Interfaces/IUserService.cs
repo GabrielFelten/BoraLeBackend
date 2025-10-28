@@ -6,5 +6,6 @@ namespace BoraLe.Application.Interfaces
     {
         Task<string> Register(Register register);
         Task<string> Login(string email, string pass);
+        Task<UserProfile> GetUser(string userId);
     }
 }

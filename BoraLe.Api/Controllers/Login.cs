@@ -32,10 +32,11 @@ namespace BoraLe.Api.Controllers
             {
                 var errors = ModelState.Values
                     .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
+                    .Select(e => e.ErrorMessage);
 
-                return BadRequest(errors);
+                var errorMessage = string.Join(" ", errors);
+
+                return BadRequest(new { message = errorMessage });
             }
 
             try
@@ -47,6 +48,12 @@ namespace BoraLe.Api.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }                        
+        }
+
+        [HttpGet("GetUser")]
+        public async Task<UserProfile> GetUser([FromQuery] string userId)
+        {
+            return await _service.GetUser(userId);
         }
     }
 }

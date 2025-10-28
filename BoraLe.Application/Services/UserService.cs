@@ -1,8 +1,6 @@
 ﻿using BoraLe.Application.Interfaces;
 using BoraLe.Domain.Entities;
 using BoraLe.Domain.Interfaces;
-using Microsoft.Win32;
-using System.Security.Cryptography;
 
 namespace BoraLe.Application.Services
 {
@@ -50,6 +48,11 @@ namespace BoraLe.Application.Services
             Console.WriteLine($"Usuário {userLogin.Name} logado com sucesso!");
 
             return userLogin.Id;
+        }
+
+        public async Task<UserProfile> GetUser(string userId)
+        {
+            return await _repo.GetUser(userId);
         }
     }
 }

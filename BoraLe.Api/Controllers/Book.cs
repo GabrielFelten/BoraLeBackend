@@ -19,10 +19,11 @@ namespace BoraLe.Api.Controllers
             {
                 var errors = ModelState.Values
                     .SelectMany(v => v.Errors)
-                    .Select(e => e.ErrorMessage)
-                    .ToList();
+                    .Select(e => e.ErrorMessage);
 
-                return BadRequest(errors);
+                var errorMessage = string.Join(" ", errors);
+
+                return BadRequest(new { message = errorMessage });
             }
 
             await _service.UpsertBook(book);

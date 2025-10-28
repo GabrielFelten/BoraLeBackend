@@ -11,6 +11,7 @@ namespace BoraLe.Domain.Entities
         public List<string> Objectives { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }        
+        public string UserState { get; set; }        
         public string UserCity { get; set; }        
         public string UserPhone { get; set; }        
         public string UserEmail { get; set; }        

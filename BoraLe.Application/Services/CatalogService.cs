@@ -43,6 +43,7 @@ namespace BoraLe.Application.Services
                         Objectives = book.Objectives,
                         Status = book.Status,
                         UserName = user.Name,
+                        UserState = user.State,
                         UserCity = user.City,
                         UserPhone = user.Phone,
                         UserEmail = user.Email
