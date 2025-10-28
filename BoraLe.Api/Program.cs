@@ -6,20 +6,28 @@ using BoraLe.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Adiciona controllers e Swagger
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Configuração Firebase
 builder.Services.AddSingleton<FirebaseConfig>();
 
-// Registrando repositório e serviço
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IBookRepository, BookRepository>();
 builder.Services.AddScoped<IBookService, BookService>();
 builder.Services.AddScoped<ICatalogService, CatalogService>();
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalAndRender", policy =>
+        policy.WithOrigins(
+            "http://localhost:3000",
+            "https://boralefrontend.vercel.app"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
@@ -30,6 +38,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowLocalAndRender");
 
 app.UseAuthorization();
 
