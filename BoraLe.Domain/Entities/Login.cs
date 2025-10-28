@@ -14,7 +14,7 @@ namespace BoraLe.Domain.Entities
         [MaxLength(255, ErrorMessage = "O e-mail não pode ter mais de 255 caracteres.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "O estado é obrigatórip.")]
+        [Required(ErrorMessage = "O estado é obrigatório.")]
         [MaxLength(2, ErrorMessage = "O estado não pode ter mais de 2 caracteres.")]
         public string State { get; set; }
 
