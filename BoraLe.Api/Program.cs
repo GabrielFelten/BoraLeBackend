@@ -56,8 +56,9 @@ app.UseCors("AllowLocalAndRender");
 
 app.Use(async (context, next) =>
 {
-    context.Response.Headers.TryAdd("Content-Type", "application/json; charset=utf-8");
     await next();
+    if (!context.Response.Headers.ContainsKey("Content-Type"))
+        context.Response.Headers.Add("Content-Type", "application/json; charset=utf-8");
 });
 
 app.UseAuthorization();
