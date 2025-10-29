@@ -5,8 +5,8 @@ namespace BoraLe.Domain.Interfaces
     public interface IUserRepository
     {
         Task<IEnumerable<User>> GetAllAsync();
-        Task<UserLogin> GetByFieldAsync(string field, string value);
-        Task<string> AddAsync(Register register);
+        Task<UserLogin> GetByFieldAsync(string field, string value, string userId = null);
+        Task<string> UpsertUser(UpsertUser user);
         Task<UserProfile> GetUser(string userId);
     }
 }

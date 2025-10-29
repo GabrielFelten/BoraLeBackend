@@ -21,24 +21,35 @@ namespace BoraLe.Infrastructure.Repositories
             return snapshot.Documents.Select(doc => doc.ConvertTo<User>()).ToList();
         }
 
-        public async Task<UserLogin> GetByFieldAsync(string field, string value)
+        public async Task<UserLogin> GetByFieldAsync(string field, string value, string userId)
         {
             var query = _db.Collection(CollectionName).WhereEqualTo(field, value);
+
+            if (!string.IsNullOrEmpty(userId))
+                query = query.WhereNotEqualTo(FieldPath.DocumentId, userId);
+
             var snapshot = await query.GetSnapshotAsync();
-            return snapshot.Count == 0 ? null : snapshot.Documents.First().ConvertTo<UserLogin>();
+
+            if (snapshot.Count == 0)
+                return null;
+
+            return snapshot.Documents.First().ConvertTo<UserLogin>();
         }
 
-        public async Task<string> AddAsync(Register register)
+        public async Task<string> UpsertUser(UpsertUser user)
         {
-            var userRef = _db.Collection(CollectionName).Document();
+            var userRef = string.IsNullOrEmpty(user.Id)
+                ? _db.Collection(CollectionName).Document()
+                : _db.Collection(CollectionName).Document(user.Id);
+
             await userRef.SetAsync(new UserLogin
             {
-                Name = register.Name,
-                Email = register.Email,
-                State = register.State,
-                City = register.City,
-                Phone = register.Phone,
-                Pass = register.Pass
+                Name = user.Name,
+                Email = user.Email,
+                Phone = user.Phone,
+                State = user.State,
+                City = user.City,
+                Pass = user.Pass
             });
 
             return userRef.Id.ToString();

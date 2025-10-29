@@ -25,8 +25,8 @@ namespace BoraLe.Api.Controllers
             }            
         }
 
-        [HttpPost("Register")]
-        public async Task<IActionResult> Register([FromBody] Register register)
+        [HttpPost("UpsertUser")]
+        public async Task<IActionResult> UpsertUser([FromBody] UpsertUser user)
         {
             if (!ModelState.IsValid)
             {
@@ -41,7 +41,7 @@ namespace BoraLe.Api.Controllers
 
             try
             {
-                string id = await _service.Register(register);
+                string id = await _service.UpsertUser(user);
                 return Ok(new { message = "Usuário registrado com sucesso!", id });
             }
             catch (Exception ex)

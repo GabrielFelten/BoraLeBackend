@@ -9,22 +9,22 @@ namespace BoraLe.Application.Services
         private readonly IUserRepository _repo;
         public UserService(IUserRepository repo) => _repo = repo;
 
-        public async Task<string> Register(Register register)
+        public async Task<string> UpsertUser(UpsertUser user)
         {
-            await ValidRegister(register);
+            await ValidUpsertUser(user);
 
-            register.Pass = BCrypt.Net.BCrypt.HashPassword(register.Pass);
+            user.Pass = BCrypt.Net.BCrypt.HashPassword(user.Pass);
 
-            return await _repo.AddAsync(register);
+            return await _repo.UpsertUser(user);
         }
 
-        private async Task ValidRegister(Register register)
+        private async Task ValidUpsertUser(UpsertUser user)
         {
-            var userByEmail = await _repo.GetByFieldAsync("Email", register.Email);
+            var userByEmail = await _repo.GetByFieldAsync("Email", user.Email, user.Id);
             if (userByEmail is not null)
                 throw new ArgumentException("Já existe um usuário com este e-mail.");
 
-            var userByPhone = await _repo.GetByFieldAsync("Phone", register.Phone);
+            var userByPhone = await _repo.GetByFieldAsync("Phone", user.Phone, user.Id);
             if (userByPhone is not null)
                 throw new ArgumentException("Já existe um usuário com este telefone.");
         }

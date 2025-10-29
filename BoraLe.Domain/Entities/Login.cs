@@ -3,8 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BoraLe.Domain.Entities
 {
-    public class Register
+    public class UpsertUser
     {
+        public string Id { get; set; }
+
         [Required(ErrorMessage = "O nome é obrigatório.")]
         [MaxLength(255, ErrorMessage = "O nome não pode ter mais de 255 caracteres.")]
         public string Name { get; set; }
