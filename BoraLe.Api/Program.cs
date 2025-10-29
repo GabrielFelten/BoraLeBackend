@@ -50,6 +50,12 @@ app.UseHttpsRedirection();
 
 app.UseCors("AllowLocalAndRender");
 
+app.Use(async (context, next) =>
+{
+    context.Response.Headers.TryAdd("Content-Type", "application/json; charset=utf-8");
+    await next();
+});
+
 app.UseAuthorization();
 
 app.MapControllers();
