@@ -41,6 +41,7 @@ namespace BoraLe.Domain.Entities
 
         public bool Status { get; set; }
 
+        [Required(ErrorMessage = "O Objetivo é obrigatório.")]
         public List<enumObjectives> Objectives { get; set; }
 
         [Required(ErrorMessage = "O IdUser é obrigatório.")]
