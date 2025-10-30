@@ -29,15 +29,12 @@ namespace BoraLe.Infrastructure.Repositories
 
             var userRef = _db.Collection("users").Document(book.IdUser);
 
-            var objectivesAsString = book.Objectives
-                .Select(o => o.ToString()).ToList();
-
             await bookRef.SetAsync(new Book
             {
                 Title = book.Title,
                 Genre = book.Genre,
                 Status = book.Status,
-                Objectives = objectivesAsString,
+                Objectives = book.Objectives,
                 UserRef = userRef
             });
 
