@@ -54,7 +54,7 @@ namespace BoraLe.Domain.Entities
         public string Title { get; set; }
         public string Genre { get; set; }
         public bool Status { get; set; }
-        public List<enumObjectives> Objectives { get; set; }
+        public List<string> Objectives { get; set; }
         public string UserId { get; set; }
     }
 

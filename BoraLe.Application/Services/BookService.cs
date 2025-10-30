@@ -23,19 +23,12 @@ namespace BoraLe.Application.Services
 
             foreach (var book in books)
             {
-                var objectives = new List<enumObjectives>();
-                if (book.Objectives.Any())
-                {
-                    objectives = book.Objectives
-                        .Select(s => Enum.Parse<enumObjectives>(s)).ToList();
-                }
-
                 booksUser.Add(new BooksUser
                 {
                     Id = book.Id,
                     Title = book.Title,
                     Genre = book.Genre,
-                    Objectives = objectives,
+                    Objectives = book.Objectives,
                     Status = book.Status,
                     UserId = userId
                 });
