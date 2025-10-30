@@ -75,5 +75,19 @@ namespace BoraLe.Infrastructure.Repositories
                 City = user.City
             };
         }
+
+        public async Task<string> GetUserPass(string userId)
+        {
+            var docRef = _db.Collection(CollectionName).Document(userId);
+
+            var snapshot = await docRef.GetSnapshotAsync();
+
+            if (!snapshot.Exists)
+                return null;
+
+            var user = snapshot.ConvertTo<UserLogin>();
+
+            return user.Pass;
+        }
     }
 }

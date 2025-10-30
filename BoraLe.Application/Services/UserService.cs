@@ -13,7 +13,10 @@ namespace BoraLe.Application.Services
         {
             await ValidUpsertUser(user);
 
-            user.Pass = BCrypt.Net.BCrypt.HashPassword(user.Pass);
+            if (string.IsNullOrEmpty(user.Id))
+                user.Pass = BCrypt.Net.BCrypt.HashPassword(user.Pass);
+            else
+                user.Pass = await _repo.GetUserPass(user.Id);
 
             return await _repo.UpsertUser(user);
         }

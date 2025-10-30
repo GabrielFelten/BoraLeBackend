@@ -28,9 +28,19 @@ namespace BoraLe.Domain.Entities
         [MaxLength(255, ErrorMessage = "O telefone não pode ter mais de 255 caracteres.")]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "A senha é obrigatória.")]
         [MaxLength(25, ErrorMessage = "A senha não pode ter mais de 25 caracteres.")]
         public string Pass { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (string.IsNullOrEmpty(Id) && string.IsNullOrEmpty(Pass))
+            {
+                yield return new ValidationResult(
+                    "A senha é obrigatória para novos usuários.",
+                    new[] { nameof(Pass) }
+                );
+            }
+        }
     }
 
     [FirestoreData]
