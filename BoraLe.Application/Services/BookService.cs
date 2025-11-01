@@ -36,5 +36,10 @@ namespace BoraLe.Application.Services
 
             return booksUser;
         }
+
+        public async Task DeleteBookAsync(string id)
+        {
+            await _repo.DeleteBookAsync(id);
+        }
     }
 }

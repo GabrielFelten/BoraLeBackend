@@ -6,5 +6,7 @@ namespace BoraLe.Application.Interfaces
     {
         Task UpsertBook(UpsertBook book);
         Task<IEnumerable<BooksUser>> GetBooksByUser(string userId);
+
+        Task DeleteBookAsync(string id);
     }
 }

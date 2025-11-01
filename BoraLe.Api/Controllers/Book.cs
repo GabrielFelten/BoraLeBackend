@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using BoraLe.Application.Interfaces;
 using BoraLe.Domain.Entities;
-using Microsoft.Win32;
 
 namespace BoraLe.Api.Controllers
 {
@@ -34,6 +33,20 @@ namespace BoraLe.Api.Controllers
         public async Task<IEnumerable<BooksUser>> GetBooksByUser([FromQuery] string userId)
         {
             return await _service.GetBooksByUser(userId);
+        }
+
+        [HttpDelete("DeleteBook")]
+        public async Task<IActionResult> DeleteBook([FromQuery] string bookId)
+        {
+            try
+            {
+                await _service.DeleteBookAsync(bookId);
+                return Ok(new { message = "Livro deletado com sucesso!" });
+            }
+            catch (Exception ex) 
+            {
+                return BadRequest(new { message = "Erro ao deletar livro" });
+            }
         }
     }    
 }

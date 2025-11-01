@@ -6,6 +6,6 @@ namespace BoraLe.Application.Interfaces
     {
         Task<string> UpsertUser(UpsertUser user);
         Task<string> Login(string email, string pass);
-        Task<UserProfile> GetUser(string userId);
+        Task<UserProfile> GetUser(string userId);        
     }
 }

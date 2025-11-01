@@ -55,5 +55,19 @@ namespace BoraLe.Infrastructure.Repositories
 
             return books;
         }
+
+        public async Task DeleteBookAsync(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+                return;
+
+            var bookRef = _db.Collection(CollectionName).Document(id);
+
+            var snapshot = await bookRef.GetSnapshotAsync();
+            if (!snapshot.Exists)
+                return;
+
+            await bookRef.DeleteAsync();
+        }
     }
 }
