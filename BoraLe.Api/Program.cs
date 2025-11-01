@@ -36,7 +36,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowLocalAndRender", policy =>
         policy.WithOrigins(
             "http://localhost:3000",
-            "https://borale.vercel.app"
+            "https://borale.vercel.app",
+            "https://boraler.com"
         )
         .AllowAnyHeader()
         .AllowAnyMethod());
