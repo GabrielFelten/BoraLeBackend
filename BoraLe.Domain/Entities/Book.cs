@@ -16,6 +16,9 @@ namespace BoraLe.Domain.Entities
         public string Genre { get; set; }
 
         [FirestoreProperty]
+        public string Author { get; set; }
+
+        [FirestoreProperty]
         public bool Status { get; set; }
 
         [FirestoreProperty]
@@ -39,6 +42,10 @@ namespace BoraLe.Domain.Entities
         [MaxLength(300, ErrorMessage = "O Gênero não pode ter mais de 300 caracteres.")]
         public string Genre { get; set; }
 
+        [Required(ErrorMessage = "O Autor é obrigatório.")]
+        [MaxLength(300, ErrorMessage = "O Autor não pode ter mais de 300 caracteres.")]
+        public string Author { get; set; }
+
         public bool Status { get; set; }
 
         [Required(ErrorMessage = "O Objetivo é obrigatório.")]
@@ -53,6 +60,7 @@ namespace BoraLe.Domain.Entities
         public string Id { get; set; }
         public string Title { get; set; }
         public string Genre { get; set; }
+        public string Author { get; set; }
         public bool Status { get; set; }
         public List<string> Objectives { get; set; }
         public string UserId { get; set; }

@@ -33,6 +33,7 @@ namespace BoraLe.Infrastructure.Repositories
             {
                 Title = book.Title,
                 Genre = book.Genre,
+                Author = book.Author,
                 Status = book.Status,
                 Objectives = book.Objectives,
                 UserRef = userRef

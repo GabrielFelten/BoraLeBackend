@@ -24,9 +24,26 @@ namespace BoraLe.Domain.Entities
         [MaxLength(300, ErrorMessage = "A cidade não pode ter mais de 300 caracteres.")]
         public string City { get; set; }
 
+        [Required(ErrorMessage = "O CEP é obrigatório.")]
+        [MaxLength(50, ErrorMessage = "O CEP não pode ter mais de 50 caracteres.")]
+        public string Cep { get; set; }
+
+        [MaxLength(300, ErrorMessage = "A rua não pode ter mais de 300 caracteres.")]
+        public string Street { get; set; }
+
+        [MaxLength(50, ErrorMessage = "O número não pode ter mais de 50 caracteres.")]
+        public string Number { get; set; }
+
+        [MaxLength(200, ErrorMessage = "O bairro não pode ter mais de 200 caracteres.")]
+        public string Neighborhood { get; set; }
+
         [Required(ErrorMessage = "O telefone é obrigatório.")]
         [MaxLength(255, ErrorMessage = "O telefone não pode ter mais de 255 caracteres.")]
-        public string Phone { get; set; }
+        public string Phone { get; set; }        
+
+        [Required(ErrorMessage = "O tipo é obrigatório.")]
+        public string Type { get; set; }
+        public bool PublicContact { get; set; }
 
         [MaxLength(25, ErrorMessage = "A senha não pode ter mais de 25 caracteres.")]
         public string Pass { get; set; }

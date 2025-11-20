@@ -49,6 +49,12 @@ namespace BoraLe.Infrastructure.Repositories
                 Phone = user.Phone,
                 State = user.State,
                 City = user.City,
+                Cep = user.Cep,
+                Street = user.Street,
+                Number = user.Number,
+                Neighborhood = user.Neighborhood,
+                PublicContact = user.PublicContact,
+                Type = user.Type,
                 Pass = user.Pass
             });
 
@@ -72,7 +78,13 @@ namespace BoraLe.Infrastructure.Repositories
                 Email = user.Email,
                 Phone = user.Phone,
                 State = user.State,
-                City = user.City
+                City = user.City,
+                Cep = user.Cep,
+                Street = user.Street,
+                Number = user.Number,
+                Neighborhood = user.Neighborhood,
+                PublicContact = user.PublicContact,
+                Type = user.Type,
             };
         }
 

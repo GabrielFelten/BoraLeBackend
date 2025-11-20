@@ -20,6 +20,24 @@ namespace BoraLe.Domain.Entities
         [FirestoreProperty]
         public string City { get; set; }
 
+        [FirestoreProperty]
+        public string Cep { get; set; }
+
+        [FirestoreProperty]
+        public string Street { get; set; }
+
+        [FirestoreProperty]
+        public string Number { get; set; }
+
+        [FirestoreProperty]
+        public string Neighborhood { get; set; }
+
+        [FirestoreProperty]
+        public bool PublicContact { get; set; }
+
+        [FirestoreProperty]
+        public string Type { get; set; }
+
         [FirestoreDocumentId]
         public string Id { get; set; }
     }
@@ -31,5 +49,17 @@ namespace BoraLe.Domain.Entities
         public string Phone { get; set; }
         public string State { get; set; }
         public string City { get; set; }
+        public string Cep { get; set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string Neighborhood { get; set; }
+        public bool PublicContact { get; set; }
+        public string Type { get; set; }
+    }
+
+    public enum enumTypePerson
+    {
+        PF,
+        PJ
     }
 }

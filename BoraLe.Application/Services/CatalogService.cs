@@ -40,13 +40,20 @@ namespace BoraLe.Application.Services
                     {
                         Title = book.Title,
                         Genre = book.Genre,
+                        Author = book.Author,
                         Objectives = book.Objectives,
                         Status = book.Status,
                         UserName = user.Name,
                         UserState = user.State,
                         UserCity = user.City,
-                        UserPhone = user.Phone,
-                        UserEmail = user.Email
+                        UserPhone = user.PublicContact ? user.Phone : "",
+                        UserEmail = user.PublicContact ? user.Email : "",
+                        UserCep = user.Cep,
+                        UserStreet = user.Street,
+                        UserNumber = user.Number,
+                        UserNeighborhood = user.Neighborhood,
+                        UserType = user.Type,
+                        UserPublicContact = user.PublicContact
                     });
                 }
             }

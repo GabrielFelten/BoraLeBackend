@@ -28,6 +28,7 @@ namespace BoraLe.Application.Services
                     Id = book.Id,
                     Title = book.Title,
                     Genre = book.Genre,
+                    Author = book.Author,
                     Objectives = book.Objectives,
                     Status = book.Status,
                     UserId = userId
