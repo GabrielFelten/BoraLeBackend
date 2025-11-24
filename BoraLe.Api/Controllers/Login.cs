@@ -55,5 +55,11 @@ namespace BoraLe.Api.Controllers
         {
             return await _service.GetUser(userId);
         }
+
+        [HttpGet("InitApi")]
+        public async Task<bool> InitApi()
+        {
+            return true;
+        }
     }
 }
